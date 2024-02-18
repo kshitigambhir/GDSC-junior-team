@@ -1,1 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agri Nova</title>
+    <link rel="icon" href="./logo.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.3/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-green-50 min-h-screen flex flex-col items-center justify-center">
+    <div class="p-5 w-full max-w-md bg-white rounded-lg shadow-md">
+        <div class="flex flex-col items-center mb-4">
+            <svg class="w-16 h-16 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a5 5 0 015 5v5h5a5 5 0 01-5 5h-5v5a5 5 0 01-5-5v-5H7a5 5 0 01-5-5h5V7a5 5 0 015-5z" />
+            </svg>
+            <h2 class="text-xl font-bold text-center">Agri Nova</h2>
+        </div>
+        <input id="imageInput" type="file" accept="image/*" class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none">
+        <button id="detectButton" class="mt-4 w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onclick="detectDisease()">Detect Disease</button>
+        <div id="result" class="mt-4 text-center"></div>
+        <div class="mt-6 px-4 py-4 bg-green-100 rounded-lg">
+            <h3 class="text-lg font-semibold">How it Works</h3>
+            <p class="text-sm text-gray-700 mt-2">Upload a clear photo of your plant's leaf. Our intelligent algorithms will analyze the image to detect any diseases and suggest appropriate remedies.</p>
+        </div>
+        <div class="mt-4 px-4 py-4 bg-blue-100 rounded-lg">
+            <h3 class="text-lg font-semibold">Photo Tips</h3>
+            <ul class="list-disc list-inside text-sm text-gray-700 mt-2">
+                <li>Ensure the leaf is well-lit, but avoid direct sunlight.</li>
+                <li>Take the photo against a plain background for better contrast.</li>
+                <li>Avoid blurry images for more accurate detection.</li>
+            </ul>
+        </div>
+        <div class="mt-4 mb-6 px-4 py-4 bg-yellow-100 rounded-lg">
+            <h3 class="text-lg font-semibold">Preventive Measures</h3>
+            <p class="text-sm text-gray-700 mt-2">Regular inspection, proper watering, and avoiding overcrowding can significantly reduce the risk of plant diseases.</p>
+        </div>
+    </div>
 
+    <!-- Chatbot Section -->
+    <div class="chat-container justify-start">
+        <div id="chat-box" class="chat-box"></div>
+        <div class="flex mt-4">
+            <input id="user-input" type="text" placeholder="Type your message..." class="flex-1 rounded-l-lg border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white p-2">
+            <button onclick="sendMessage()" class="rounded-r-lg bg-blue-500 hover:bg-blue-600 text-white px-4 py-2">Send</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+    <script>
+        function speakOutLoud(text) {
+            const speech = new SpeechSynthesisUtterance(text);
+            window.speechSynthesis.speak(speech);
+        }
+
+        function detectDisease() {
+            const resultElement = document.getElementById('result');
+            const fileInput = document.getElementById('imageInput').files[0];
+            resultElement.innerHTML = 'Processing...';
+            speakOutLoud('Processing the image. Please wait.');
+
+            setTimeout(() => {
+                const possibleDiseases = ['Leaf Spot', 'Powdery Mildew', 'Rust', 'Bacterial Blight'];
+                const randomIndex = Math.floor(Math.random() * possibleDiseases.length);
+                const mockDisease = possibleDiseases[randomIndex];
+
+                const remedy = 'Use fungicides or remove affected areas. Ensure proper air circulation.';
+                const responseMessage = `Disease Detected: ${mockDisease}. Suggested Remedy: ${remedy}`;
+                resultElement.innerHTML = `
+                    <p><strong>Disease Detected:</strong> ${mockDisease}</p>
+                    <p><strong>Suggested Remedy:</strong> ${remedy}</p>
+                `;
+                speakOutLoud(responseMessage);
+            }, 1500);
+        }
+
+        if (annyang) {
+            const commands = {
+                'detect disease': () => document.getElementById('detectButton').click()
+            };
+            annyang.addCommands(commands);
+            annyang.start();
+        }
+    </script>
+
+    <!-- Include Google Translate script and element -->
+    <div id="google_translate_element"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+    <script src="script.js"></script>
+</body>
+<footer class="mt-8 text-center text-gray-600">
+    <p>Developed by GDSC Junior Team</p>
+    <p>Contact us at <a href="gdscscoe@gmail.com">gdscscoe@gmail.com</a></p>
+</footer>
+</html>
