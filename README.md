@@ -1,5 +1,5 @@
 # GDSC-junior-team
-# An intelligent System to predict the disease of an affected crop/plant
+# An intelligent System to predict the disease of an affected crop/plant(Agri Nova)
 
 As the farmer's population is enormous in our country, it is very hard for an 
 agricultural scientist to suggest and help each farmer individually. This 
