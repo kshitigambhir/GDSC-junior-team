@@ -12,7 +12,7 @@ suggestions to the farmers.
 **Overview**<br><br>
 Agri Nova is a powerful desktop web application designed to assist farmers in diagnosing and addressing crop diseases effectively. 
 This application integrates various features such as translation, a chatbot, voice activation, and image recognition to provide a comprehensive solution for farmers.
-![alt text](http://url/to/agrinova.jpeg)
+![alt text](agrinova.jpeg)
 # Features
 **1.Translation**<br>
 FarmCare supports multiple languages, ensuring that farmers from diverse linguistic backgrounds can easily navigate and utilize the application.
