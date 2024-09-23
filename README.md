@@ -1,4 +1,4 @@
-# GDSC-junior-team
+# GDSC-junior-team [Winner of AI-AGON 2K24]
 # An intelligent System to predict the disease of an affected crop/plant
 
 As the farmer's population is enormous in our country, it is very hard for an 
